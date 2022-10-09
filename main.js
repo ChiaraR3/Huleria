@@ -110,6 +110,7 @@ window.addEventListener('load',function(){
             this.time = 0
             game.enemies=[]
             game.score=0
+            this.lives =5;
             game.gameOver = false
              animate(0)
         }
