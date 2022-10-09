@@ -25,7 +25,7 @@ export class Player {
     }
  update(input,deltaTime) {
    this.checkCollision()
-   this.currentState.handleInput(input)
+     this.currentState.handleInput(input)
     //movimenti orizzontali
     this.x+= this.speed;
     if(input.includes('ArrowRight') && this.currentState !== this.states[6]) this.speed = this.maxSpeed;
@@ -84,5 +84,11 @@ export class Player {
         
       }
    })
+ }
+ restart(){
+   this.x = 0;
+   this.y = this.game.height - this.height - this.game.groundMargin;
+   this.frameY = 0;
+   this.maxFrame;
  }
 }

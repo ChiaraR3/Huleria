@@ -7,7 +7,7 @@ import {UI} from './UI.js'
 window.addEventListener('load',function(){
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 1500;
+    canvas.width = 1000;
     canvas.height = 500;
 
     class Game{
@@ -52,32 +52,32 @@ window.addEventListener('load',function(){
            }
            this.enemies.forEach(enemy=> {
             enemy.update(deltaTime);
-              
+
            })
            //handle messages
-       
+
            this.floatingMessages.forEach(message=> {
             message.update()
             })
            //handle particles
            this.particles.forEach((particle, index) =>{
             particle.update();
-           
+
            })
            if(this.particles.length >  this.maxParticles) {
               this.particles.length = this.maxParticles
-            
+
            }
            //handle collisions
            this.collisions.forEach((collision,index)=>{
             collision.update(deltaTime);
-            
+
            })
            this.enemies = this.enemies.filter(enemy=> !enemy.markedForDeletion)
            this.particles = this.particles.filter(particle=> !particle.markedForDeletion)
            this.collisions = this.collisions.filter(collision=> !collision.markedForDeletion)
            this.floatingMessages = this.floatingMessages.filter(message=> !message.markedForDeletion)
-           console.log(this.floatingMessages)
+           
         }
         draw(context) {
             this.background.draw(context)
@@ -104,8 +104,18 @@ window.addEventListener('load',function(){
             console.log(this.floatingMessages);
 
         }
-    }
+        restartGame(){
+            console.log(game.player ,'player')
+            game.player.restart()
+            this.time = 0
+            game.enemies=[]
+            game.score=0
+            game.gameOver = false
+             animate(0)
+        }
 
+    }
+    
     const game = new Game( canvas.width, canvas.height)
     console.log(game)
     let lastTime = 0;
@@ -117,6 +127,8 @@ window.addEventListener('load',function(){
         game.update(deltaTime);
         game.draw(ctx);
        if(!game.gameOver) requestAnimationFrame(animate);
-    }
+    
+ }
     animate(0);
+
 })

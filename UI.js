@@ -33,6 +33,7 @@ export class UI {
             context.fillText('Ups' ,this.game.width * 0.5,this.game.height * 0.5 - 20)
             context.font = this.fontSize * 0.7 + 'px ' + this.fontFamily
             context.fillText('Better luck next time.. maybe? ' ,this.game.width * 0.5,this.game.height * 0.5 +20)
+            context.fillText('PRESS ENTER TO RESTART ' ,this.game.width * 0.5,this.game.height * 0.5 +50)
         }
       
     }
